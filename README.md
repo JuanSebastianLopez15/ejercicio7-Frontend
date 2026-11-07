@@ -1,1 +1,3 @@
-# ejercicio7-Frontend
+# Integrantes: 
+- Juan Esteban Hernandez 
+- Juan Sebastian Lopez 
