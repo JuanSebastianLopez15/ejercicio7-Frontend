@@ -1,0 +1,2 @@
+function dibujarCanvas(enRuta, capacidad) {
+}

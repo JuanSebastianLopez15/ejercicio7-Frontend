@@ -1,0 +1,5 @@
+main { display: flex; gap: 16px; }
+.columna { flex: 1; }
+.zona { min-height: 150px; }
+.zona.encima { outline: 2px dashed orange; }
+.tarjeta { border: 1px solid #ccc; padding: 8px; margin-bottom: 8px; }

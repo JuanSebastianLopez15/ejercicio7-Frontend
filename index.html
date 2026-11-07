@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de entregas</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    
+  <header>
+    <h1>Simulador de entregas</h1>
+    <p id="ubicacion">Buscando ubicación...</p>
+  </header>
+
+  <main>
+    <section class="columna">
+      <h2>Pedidos</h2>
+      <div class="zona" id="pendientes"></div>
+    </section>
+
+    <section class="columna">
+      <h2>En ruta <span id="contador"></span></h2>
+      <div class="zona" id="en-ruta"></div>
+    </section>
+
+    <section class="columna">
+      <h2>Pedidos activos</h2>
+      <canvas id="canvas" width="300" height="200"></canvas>
+    </section>
+  </main>
+
+  <p id="mensaje" role="status"></p>
+
+  <script src="canvas.js"></script>
+  <script src="ubicacion.js"></script>
+  <script src="pedidos.js"></script>
 </body>
 </html>
