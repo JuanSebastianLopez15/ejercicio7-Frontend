@@ -1,5 +1,144 @@
-main { display: flex; gap: 16px; }
-.columna { flex: 1; }
-.zona { min-height: 150px; }
-.zona.encima { outline: 2px dashed orange; }
-.tarjeta { border: 1px solid #ccc; padding: 8px; margin-bottom: 8px; }
+/* Paleta tipo app de domicilios: naranja (accion) y azul (confianza) */
+:root {
+  --naranja: #FF6B00;
+  --naranja-claro: #FFF1E6;
+  --azul: #0057FF;
+  --azul-oscuro: #0A1F44;
+  --gris-fondo: #F4F6FA;
+  --blanco: #FFFFFF;
+  --sombra: 0 4px 14px rgba(10, 31, 68, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--gris-fondo);
+  color: var(--azul-oscuro);
+}
+
+/* Barra superior */
+header {
+  background: linear-gradient(90deg, var(--naranja), #FF8A00);
+  color: var(--blanco);
+  padding: 20px 32px;
+  box-shadow: var(--sombra);
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+}
+
+#ubicacion {
+  display: inline-block;
+  margin: 0;
+  padding: 6px 14px;
+  background: var(--azul-oscuro);
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+/* Columnas: pedidos.js depende de este display: flex */
+main {
+  display: flex;
+  gap: 20px;
+  padding: 24px 32px;
+  align-items: flex-start;
+}
+
+.columna {
+  flex: 1;
+  background: var(--blanco);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--sombra);
+}
+
+.columna h2 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+  color: var(--azul);
+  border-bottom: 3px solid var(--naranja);
+  padding-bottom: 8px;
+}
+
+#contador { color: var(--naranja); }
+
+/* Zona donde se sueltan las tarjetas: sin min-height una zona vacia mide 0px y no deja soltar */
+.zona {
+  min-height: 150px;
+  border-radius: 12px;
+  padding: 8px;
+  background: var(--gris-fondo);
+  transition: background 0.2s, outline 0.2s;
+}
+
+/* Borde que aparece al arrastrar una tarjeta encima (lo agrega pedidos.js) */
+.zona.encima {
+  outline: 3px dashed var(--naranja);
+  background: var(--naranja-claro);
+}
+
+/* Tarjeta de pedido */
+.tarjeta {
+  background: var(--blanco);
+  border-left: 6px solid var(--azul);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(10, 31, 68, 0.10);
+  cursor: grab;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.tarjeta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra);
+}
+
+.tarjeta:active { cursor: grabbing; }
+
+.tarjeta strong { color: var(--naranja); }
+
+.tarjeta p {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+}
+
+/* Las tarjetas en ruta cambian su borde a naranja */
+#en-ruta .tarjeta { border-left-color: var(--naranja); }
+
+#canvas {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--gris-fondo);
+  border-radius: 12px;
+}
+
+/* Aviso inferior (capacidad, cambios de estado) */
+#mensaje {
+  margin: 0 32px 24px;
+  padding: 12px 16px;
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+  border-left: 6px solid var(--naranja);
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+#mensaje:empty { display: none; }
+
+/* En pantallas pequeñas las columnas se apilan */
+@media (max-width: 800px) {
+  main {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+  }
+  header { padding: 16px; }
+  #mensaje { margin: 0 16px 16px; }
+}
